@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>地球Online · 门派测试</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-particles" id="particles"></div>
+
+<div id="app">
+  <div class="screen active" id="intro">
+    <div class="intro-scanline"></div>
+    <div class="intro-glitch">門</div>
+    <div class="intro-title" id="introTitle">地球 Online</div>
+    <div class="intro-status" id="introStatus">灵魂接入中...</div>
+    <div class="intro-bar-wrap"><div class="intro-bar" id="introBar"></div></div>
+    <div class="intro-hint" id="introHint">[ 点击进入 ]</div>
+  </div>
+
+  <div class="screen" id="quiz">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="progressFill"></div></div>
+      <div class="quiz-progress-num" id="progressNum">01/12</div>
+    </div>
+    <div class="quiz-question" id="questionText"></div>
+    <div class="quiz-options" id="optionsWrap"></div>
+  </div>
+
+  <div class="screen" id="result">
+    <div class="result-scroll" id="resultScroll">
+      <div class="result-card" id="resultCard">
+        <div class="rc-emoji" id="resultEmoji"></div>
+        <div class="rc-name" id="resultFaction"></div>
+        <div class="rc-title" id="resultTitle"></div>
+        <div class="rc-line" id="resultLine"></div>
+        <div class="rc-signature" id="resultSignature"></div>
+      </div>
+
+      <div class="result-section" id="sectionAttributes">
+        <div class="rs-label">核心参数</div>
+        <div class="rs-attrs" id="attrsWrap"></div>
+      </div>
+
+      <div class="result-section" id="sectionTalent">
+        <div class="rs-label">天赋与短板</div>
+        <div class="rs-talent" id="talentText"></div>
+        <div class="rs-weakness" id="weaknessText"></div>
+      </div>
+
+      <div class="result-section" id="sectionSurvival">
+        <div class="rs-label">生存攻略</div>
+        <div class="rs-energy">
+          <div class="energy-row">
+            <span class="energy-tag energy-source">能量来源</span>
+            <span class="energy-val" id="energySource"></span>
+          </div>
+          <div class="energy-row">
+            <span class="energy-tag energy-drain">能量黑洞</span>
+            <span class="energy-val" id="energyDrain"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-section" id="sectionSignal">
+        <div class="rs-label">同频玩家信号</div>
+        <div class="rs-signal" id="signalText"></div>
+        <div class="rs-footprint" id="footprintText"></div>
+      </div>
+
+      <div class="result-section" id="sectionDistribution">
+        <div class="rs-label">属性分布</div>
+        <div class="rs-dist" id="distWrap"></div>
+      </div>
+
+      <div class="result-section" id="sectionNarrative">
+        <div class="rs-label">流派独白</div>
+        <div class="rs-narrative" id="narrativeText"></div>
+      </div>
+
+      <button class="result-restart" id="restartBtn">重新接入</button>
+      <div class="result-bottom-spacer"></div>
+    </div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
