@@ -97,13 +97,32 @@ body {
   font-family: var(--font-serif);
   font-size: 1.6rem;
   letter-spacing: 0.3em;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.75rem;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s ease;
 }
 
 .intro-title.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-subtitle {
+  max-width: 18rem;
+  margin-bottom: 2.25rem;
+  color: rgba(226, 232, 240, 0.68);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  line-height: 1.8;
+  text-align: center;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.8s ease 0.15s;
+}
+
+.intro-title.show + .intro-subtitle {
   opacity: 1;
   transform: translateY(0);
 }
@@ -538,8 +557,14 @@ body {
   white-space: pre-line;
 }
 
-.result-restart {
-  display: block;
+.result-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.result-action {
   width: 100%;
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -550,18 +575,22 @@ body {
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   cursor: pointer;
-  margin-top: 0.5rem;
   transition: all 0.3s ease;
   opacity: 0;
 }
 
-.result-restart.show {
+.result-action.show {
   opacity: 1;
 }
 
-.result-restart:hover {
+.result-action:hover {
   color: var(--fg);
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.result-action.copied {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .result-bottom-spacer {
@@ -599,6 +628,10 @@ body {
     letter-spacing: 0.2em;
   }
 
+  .intro-subtitle {
+    font-size: 0.78rem;
+  }
+
   .quiz-question {
     font-size: 1rem;
     line-height: 1.8;
@@ -622,6 +655,10 @@ body {
 
   .rs-narrative {
     font-size: 0.78rem;
+  }
+
+  .result-actions {
+    grid-template-columns: 1fr;
   }
 }
 

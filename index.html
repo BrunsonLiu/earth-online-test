@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a0e17">
+<meta name="description" content="地球 Online 玩家测试：一个用 AI 辅助创作的网页人格测试小游戏，探索你在地球服务器里的门派、天赋与生存攻略。">
+<meta property="og:title" content="地球 Online · 门派测试">
+<meta property="og:description" content="回答 12 道题，生成你的地球 Online 玩家档案。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://brunsonliu.github.io/earth-online-test/">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>地球Online · 门派测试</title>
@@ -21,6 +26,7 @@
     <div class="intro-scanline"></div>
     <div class="intro-glitch">門</div>
     <div class="intro-title" id="introTitle">地球 Online</div>
+    <div class="intro-subtitle">一场关于你如何探索世界的玩家测试</div>
     <div class="intro-status" id="introStatus">灵魂接入中...</div>
     <div class="intro-bar-wrap"><div class="intro-bar" id="introBar"></div></div>
     <div class="intro-hint" id="introHint">[ 点击进入 ]</div>
@@ -86,7 +92,10 @@
         <div class="rs-narrative" id="narrativeText"></div>
       </div>
 
-      <button class="result-restart" id="restartBtn">重新接入</button>
+      <div class="result-actions">
+        <button class="result-action" id="copyBtn">复制玩家档案</button>
+        <button class="result-action" id="restartBtn">重新接入</button>
+      </div>
       <div class="result-bottom-spacer"></div>
     </div>
   </div>

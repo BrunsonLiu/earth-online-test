@@ -4,6 +4,7 @@
   var currentQ = 0;
   var scores = {};
   var activeQuestions = [];
+  var latestResult = null;
 
   function shuffle(arr) {
     var a = arr.slice();
@@ -213,9 +214,80 @@
     }, 400);
   }
 
+  function buildResultText(result) {
+    var f = result.faction;
+    var lines = [
+      '我的地球 Online 玩家档案',
+      '',
+      '门派：' + f.name + ' ' + f.emoji,
+      '称号：' + f.title,
+      '签名：「' + f.signature + '」',
+      '',
+      '天赋：' + f.talent,
+      '短板：' + f.weakness,
+      '',
+      '能量来源：' + f.energySource,
+      '能量黑洞：' + f.energyDrain,
+      '',
+      '同频信号：' + f.signal,
+      '出没地点：' + f.footprint,
+      '',
+      '来测你的门派：',
+      'https://brunsonliu.github.io/earth-online-test/'
+    ];
+    return lines.join('\n');
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+
+    try {
+      document.execCommand('copy');
+      return Promise.resolve();
+    } catch (err) {
+      return Promise.reject(err);
+    } finally {
+      document.body.removeChild(ta);
+    }
+  }
+
+  function copyResult() {
+    var btn = document.getElementById('copyBtn');
+    if (!latestResult) return;
+
+    copyText(buildResultText(latestResult)).then(function () {
+      var oldText = btn.textContent;
+      btn.textContent = '已复制';
+      btn.classList.add('copied');
+      setTimeout(function () {
+        btn.textContent = oldText;
+        btn.classList.remove('copied');
+      }, 1600);
+    }).catch(function () {
+      btn.textContent = '复制失败';
+      setTimeout(function () {
+        btn.textContent = '复制玩家档案';
+      }, 1600);
+    });
+  }
+
   function showResult() {
     var topType = getTopFaction();
     var f = FACTIONS[topType];
+    latestResult = {
+      faction: f,
+      scores: Object.assign({}, scores)
+    };
 
     document.getElementById('progressFill').style.width = '100%';
 
@@ -255,6 +327,7 @@
       });
 
       setTimeout(function () {
+        document.getElementById('copyBtn').classList.add('show');
         document.getElementById('restartBtn').classList.add('show');
       }, 500 + sections.length * 200 + 200);
 
@@ -267,6 +340,8 @@
     document.querySelectorAll('.result-section').forEach(function (sec) {
       sec.classList.remove('show');
     });
+    document.getElementById('copyBtn').classList.remove('show', 'copied');
+    document.getElementById('copyBtn').textContent = '复制玩家档案';
     document.getElementById('restartBtn').classList.remove('show');
     document.querySelectorAll('.attr-bar-fill').forEach(function (bar) {
       bar.style.width = '0%';
@@ -288,6 +363,7 @@
     }, 300);
   }
 
+  document.getElementById('copyBtn').addEventListener('click', copyResult);
   document.getElementById('restartBtn').addEventListener('click', restart);
 
   initParticles();
