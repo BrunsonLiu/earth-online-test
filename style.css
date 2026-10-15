@@ -68,6 +68,10 @@ body {
   z-index: 10;
 }
 
+#intro.ready {
+  cursor: pointer;
+}
+
 .intro-scanline {
   position: absolute;
   top: 0;
@@ -253,6 +257,7 @@ body {
   transition: all 0.25s ease;
   opacity: 0;
   transform: translateY(10px);
+  pointer-events: none;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -260,6 +265,7 @@ body {
 .quiz-option.show {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .quiz-option:hover {
@@ -318,16 +324,27 @@ body {
 
 .rc-name {
   font-family: var(--font-serif);
-  font-size: 2rem;
-  letter-spacing: 0.4em;
-  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.6rem;
 }
 
 .rc-title {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--muted);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.45em;
   margin-bottom: 1.2rem;
+}
+
+.rc-rarity {
+  display: inline-block;
+  margin: 0 auto 1.1rem;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.18em;
 }
 
 .rc-line {
@@ -557,6 +574,121 @@ body {
   white-space: pre-line;
 }
 
+/* ===== 门派契合度 ===== */
+.compat-invite {
+  display: none;
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left: 2px solid var(--accent);
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+
+.compat-invite.show {
+  display: block;
+}
+
+.compat-invite-from {
+  color: var(--fg);
+  margin-bottom: 0.35rem;
+}
+
+.compat-invite-level {
+  color: var(--accent);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.35rem;
+}
+
+.compat-invite-text {
+  color: var(--muted);
+}
+
+.compat-best {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+
+.compat-best-emoji {
+  font-size: 1.5rem;
+}
+
+.compat-best-name {
+  flex: 1;
+  color: var(--fg);
+}
+
+.compat-best-name small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.66rem;
+  margin-top: 0.15rem;
+}
+
+.compat-item {
+  border-top: 1px solid var(--border);
+}
+
+.compat-item-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  color: var(--fg);
+  text-align: left;
+}
+
+.compat-item-emoji {
+  font-size: 0.95rem;
+  width: 1.4rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.compat-item-name {
+  flex: 1;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+}
+
+.compat-item-level {
+  font-size: 0.62rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.compat-item.is-self .compat-item-name {
+  color: var(--accent);
+}
+
+.compat-item-detail {
+  display: none;
+  padding: 0 0.2rem 0.75rem 2rem;
+  font-size: 0.72rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.compat-item.open .compat-item-detail {
+  display: block;
+}
+
 .result-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -591,6 +723,21 @@ body {
 .result-action.copied {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.result-action-primary {
+  grid-column: 1 / -1;
+  color: var(--fg);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.result-action-primary:hover {
+  border-color: var(--accent);
+}
+
+.result-action:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .result-bottom-spacer {
